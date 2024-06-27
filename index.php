@@ -1,14 +1,15 @@
 <?php
 require_once __DIR__ . '/Models/Category.php';
 require_once __DIR__ . '/Models/Product.php';
+require_once __DIR__ . '/Models/Food.php';
 
+// definizione categoria
 $categoria_cane = new Category('Cani', 'icona-cane');
 $categoria_gatto = new Category('Gatti', 'icona-gatto');
 
-$product = new Product('Il mio primo prodotto', $categoria_cane);
-$cibo = new Product('Cibo buono', $categoria_cane);
+$products = new Product('Il mio primo prodotto', $categoria_cane);
+$cibo = new Food('Carne, Erba', 1230);
 var_dump($cibo);
-die();
 ?>
 
 
@@ -32,17 +33,19 @@ die();
     <main>
         <div class="container">
             <div class="row">
-                <div class="col-4">
-                    <!-- card vendita -->
-                    <div class="card">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                <?php foreach ($products as $product) : ?>
+                    <div class="col-4">
+                        <!-- card vendita -->
+                        <div class="card">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $product->getName(); ?></h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </main>
